@@ -1,1 +1,2 @@
 # aizuonlinejudgeの40問をpythonで解いていく
+1日4問ずつやる
