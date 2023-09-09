@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="card mt-5">
+  <div class="card-body">
+    <h3>{{ task.title }}</h3>
+    <p>{{ task.description }}</p>
+    <p class="text-muted">{{ task.deadline }}</p>
+    {% if user.is_authenticated %}
+    <a href="{% url 'task-edit' task.pk %}" class="btn btn-outline-success"
+      >編集</a
+    >
+    <a href="{% url 'task-delete' task.pk %}" class="btn btn-outline-danger"
+      >削除</a
+    >
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}
