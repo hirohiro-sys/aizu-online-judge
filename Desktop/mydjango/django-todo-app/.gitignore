@@ -1,8 +1,0 @@
-# dirs
-__pycache__
-myvenv
-media
-
-# files
-db.sqlite3
-.env
