@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %} {% block content %}
+
+<div class="row">
+  <div class="col-9">
+    {% if category %}
+    <h1>{{category}}<i>-category-</i></h1>
+    <hr />
+    {% elif tag %}
+    <h1>#{{tag}}</h1>
+    <hr />
+    {% elif query %}
+    <h1>"{{query}}"の検索結果 {{post_count}}件</h1>
+    <hr>
+    {% endif %} 
+    {% for post in posts %} 
+    {% if post.is_published or user.is_authenticated %} 
+    {% if not post.is_published %}
+    <span class="badge bg-danger">下書き</span>
+    {% endif %}
+
+    {% if post.image %}
+    <img src="{{post.image.url}}" alt="{{post.title}}" width="300" height="200">
+    {% endif %}
+
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content | truncatechars:30}}</p>
+    <p>{{post.created_at}}|{{post.updated_at}}</p>
+    <p><a href="{% url 'post-detail' post.pk %}">＞＞続きを読む</a></p>
+    {% endif %} 
+    {% endfor %}
+    {% include 'blog/snippets/pagination.html' %}
+  </div>
+  <div class="col-3">
+    {% include "blog/snippets/sidebar.html" %}
+  </div>
+</div>
+
+{% endblock content %}
